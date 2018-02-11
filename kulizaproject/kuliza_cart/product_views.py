@@ -1,0 +1,1 @@
+from kuliza_cart.models import Product

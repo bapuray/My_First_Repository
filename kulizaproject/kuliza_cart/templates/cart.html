@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checkout</title>
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+</head>
+<body>
+	<div class="container">
+		
+		{% include "header.html" %}
+
+		<div class="row"><br><br><br>
+			<div class="col-md-8 col-md-offset-2" >
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Item name</th>
+							<th>Price</th>
+							<th>Quantity</th>
+						</tr>
+					</thead>
+					<tbody class="cartList">
+					{% for p in items %}
+					<tr class="cartItem">
+						<td>{{forloop.counter}}</td>
+						<td>{{p.product.name}}</td>
+						<td class="itemPrice">{{p.product.price}}</td>
+						<td width="200px">
+							<select name='qty' class="form-control input-small qty">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+						</td>
+					</tr>
+					{% endfor %}
+					</tbody>
+					<tfooter>
+						<td></td>
+						<td></td>
+						<td class="text-right">Total : </td>
+						<td class="total_cart_amount">0</td>
+					</tfooter>
+				</table>				
+			</div>
+			<div class="col-md-8 col-md-offset-2" >
+				<button class="btn btn-primary pull-right"> Proceed to checkout </button>
+			</div>
+		</div>
+	</div>
+	<script src="/static/jquery-1.10.2.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/bootbox/bootbox.min.js"></script>
+	<script>
+		
+		$(document).ready(function(){
+			$(document).on('change','.qty',function(e){
+				e.preventDefault();
+				var qty = $(this).val();
+				calculateTotal($(this));
+			});
+
+			function calculateTotal($this){
+				var total = 0;
+				$.each($this.parents('.cartList').find('.cartItem'),function(i,v){
+					total += $(v).find('.qty').val()*1 * parseFloat($(v).find('.itemPrice').text())*1;
+					console.log($(v).find('.qty').val());
+					console.log(parseInt($(v).find('.itemPrice').text()));
+				});
+				$('.total_cart_amount').html('<strong>'+total+'</strong>');
+			}
+
+		});
+	</script>
+</body>
+</html>

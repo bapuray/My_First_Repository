@@ -1,0 +1,41 @@
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+    color: white;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+</style>
+<div class="col-md-12 form-group">
+    <ul>
+      <li><a class="" href="/home/">Home</a></li>
+      <li><a href="/mycatalog/" >My catalog</a></li>
+      
+      <!--li><a href="#about">About</a></li-->
+      <li class="pull-right"><a href="/logout/" style="float:right;" class=""> Logout</a></li>
+      <li class="pull-right"><a href="/cart/checkout/" style="float:right;" class="">My Cart : {{count}}</a></li>
+    </ul>
+</div>

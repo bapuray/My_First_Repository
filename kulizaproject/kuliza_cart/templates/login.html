@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+	<table align="center" border="1">
+		<form action="" method="POST">
+			{% csrf_token %}
+			{{form.non_field_errors}}
+			<tr>
+				<th>{{form.username.label_tag}}</th>
+				<td>{{form.username}}{{form.username.errors}}</td>
+			</tr>
+			<tr>
+				<th>{{form.password.label_tag}}</th>
+				<td>{{form.password}}{{form.password.errors}}</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<input type="submit" name="Submit">
+				</td>
+			</tr>
+		</form>
+	</table>
+</body>
+</html>

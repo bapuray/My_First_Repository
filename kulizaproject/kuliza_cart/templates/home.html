@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	
+</head>
+<body>
+	<div class="container">
+
+		{% include "header.html" %}
+
+		<div class="col-md-8">
+			<h3>Hello {{user}}!!!</h3>
+		</div>
+		<div class="col-md-4">
+			
+		</div>
+		<div class="clearfix"></div><br>
+		
+		<div class="col-md-12">
+			{% for p in products_list %}
+
+				<div class="col-md-3">
+					<div class="card" style="width: 18rem;">
+					  	<img class="card-img-top" width="180px" height="150px" src="/media/{{p.img}}" alt="Card image cap">
+					  	<div class="card-body">
+					    	<h5 class="card-title">{{p.name}}</h5>
+					    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					    	<a href="/cart/add/{{p.id}}/" class="btn btn-primary">Add to cart</a>
+					  	</div>
+					</div>
+				</div>
+
+				
+			{% endfor %}
+			
+		</div>
+
+	</div>
+	
+
+	<script src="/static/jquery-1.10.2.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+		});
+	</script>
+</body>
+</html>

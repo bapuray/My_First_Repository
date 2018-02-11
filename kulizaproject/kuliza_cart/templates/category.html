@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SubCategory</title>
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+</head>
+<body>
+	<div class="container">
+		{% include "header.html" %}
+		<div class="row">
+			<div class="col-md-6">
+				<form class="form" action="" method="POST">
+					<table class="table">
+						{% csrf_token %}
+						<tr>
+							<th>{{form.cat_name.label_tag}}</th>
+							<td>{{ form.cat_name }}{{ form.cat_name.errors}}</td>
+						</tr>
+						<tr>
+							<th>{{form.cat_desc.label_tag}}</th>
+							<td>{{ form.cat_desc }}{{ form.cat_desc.errors}}</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<input type="submit" name="Submit" class="btn btn-primary pull-right">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="col-md-6">
+				<table class="table">
+					{% for p in category_list %}
+					<tr>
+						<td>{{p.cat_name}}</td>
+						<td>
+							<a href="/category/update/{{p.id}}/" class="btn btn-info pull-right btn-sm">Update</a>
+							<a href="/category/delete/{{p.id}}/" class="btn btn-danger pull-right btn-sm del_conf">Delete</a>
+						</td>
+					</tr>
+
+					{% endfor %}
+				</table>				
+			</div>
+		</div>
+	</div>
+	<script src="/static/jquery-1.10.2.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/bootbox/bootbox.min.js"></script>
+	<script>
+		
+		$(document).ready(function(){
+			$(document).on('click','.del_conf',function(e){
+				e.preventDefault();
+				$this = $(this);
+				link_href = $this.attr('href');
+				bootbox.confirm('Are you sure ?',function(res){
+					if(res){
+						//alert('clicked ok' + ' ' + link_href);
+						window.location.href = link_href;
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>
